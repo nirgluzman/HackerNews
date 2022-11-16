@@ -79,3 +79,20 @@ main {
   flex-grow: 1;
   margin-right: 0.5rem;
 }
+
+.searchResults {
+  list-style-type: none;
+  padding: 0;
+}
+
+.result {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+  background-color: #eee;
+}
+
+.articletitle {
+  display: inline;
+  cursor: pointer;
+}

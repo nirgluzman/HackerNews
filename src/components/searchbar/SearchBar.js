@@ -11,7 +11,7 @@ export default function SearchBar() {
 
   const baseURL = "http://hn.algolia.com/api/v1/search?";
   const frontPage = `${baseURL}tags=front_page`;
-  const searchQuery = `${baseURL}query=${query}&tags=story`;
+  const searchQuery = `${baseURL}query=${searchText}&tags=story`;
 
   const handleTextChange = (event) => {
     setSearchText(event.target.value);
@@ -28,7 +28,7 @@ export default function SearchBar() {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        setSearchResults(jsonResponse);
+        setSearchResults(jsonResponse.hits);
         setIsLoading(false); // Hide loading screen
         setErrorMessage(null);
       })
@@ -43,6 +43,10 @@ export default function SearchBar() {
     fetchData(frontPage);
   }, []);
 
+  useEffect(() => {
+    fetchData(searchQuery);
+  }, [searchText]);
+
   return (
     <>
       <div className="searchbar">
@@ -56,11 +60,10 @@ export default function SearchBar() {
         />
       </div>
       <DisplayResults searchResults={searchResults} />
-      <div>
+      {/* <div>
         {isLoading ? <LoadingSpinner /> : renderUser}
         {errorMessage && <div className="error">{errorMessage}</div>}
-      </div>
-      ;
+      </div> */}
     </>
   );
 }
