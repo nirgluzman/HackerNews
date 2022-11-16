@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Header />
       <main>
-        {/* <SearchBar />
-        <SearchResults /> */}
+        <SearchBar />
+        {/* <SearchResults /> */}
       </main>
     </div>
   );
