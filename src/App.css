@@ -96,3 +96,9 @@ main {
   display: inline;
   cursor: pointer;
 }
+
+.errorMessage {
+  margin-top: 20vh;
+  color: red;
+  font-size: 1.5em;
+}

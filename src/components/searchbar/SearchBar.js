@@ -28,13 +28,20 @@ export default function SearchBar() {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        setSearchResults(jsonResponse.hits);
-        setIsLoading(false); // Hide loading screen
+        // setSearchResults(jsonResponse.hits);
+        // setIsLoading(false); // Hide loading screen
+
+        // Optional code to simulate delay
+        setTimeout(() => {
+          setSearchResults(jsonResponse.hits);
+          setIsLoading(false);
+        }, 1000);
+
         setErrorMessage(null);
       })
       .catch((networkError) => {
-        setErrorMessage("Unable to fetch user list");
-        console.log(networkError.message);
+        setErrorMessage("Unable to fetch data");
+        console.log(networkError);
         setIsLoading(false);
       });
   }
@@ -44,7 +51,9 @@ export default function SearchBar() {
   }, []);
 
   useEffect(() => {
-    fetchData(searchQuery);
+    if (searchText !== "") {
+      fetchData(searchQuery);
+    }
   }, [searchText]);
 
   return (
@@ -59,11 +68,14 @@ export default function SearchBar() {
           onChange={handleTextChange}
         />
       </div>
-      <DisplayResults searchResults={searchResults} />
-      {/* <div>
-        {isLoading ? <LoadingSpinner /> : renderUser}
-        {errorMessage && <div className="error">{errorMessage}</div>}
-      </div> */}
+      <div>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          !errorMessage && <DisplayResults searchResults={searchResults} />
+        )}
+        {errorMessage && <div className="errorMessage">{errorMessage}</div>}
+      </div>
     </>
   );
 }
