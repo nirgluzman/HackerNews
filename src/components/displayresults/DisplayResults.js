@@ -17,7 +17,9 @@ export default function DisplayResults({ searchResults }) {
                 <strong>Created by:</strong>
                 {result.author}
               </p>
-              <p className="date">{result.created_at}</p>
+              <p className="date">
+                {new Date(result.created_at).toISOString().split("T")[0]}
+              </p>
             </li>
           ))
         ) : (

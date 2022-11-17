@@ -35,7 +35,7 @@ export default function SearchBar() {
         setTimeout(() => {
           setSearchResults(jsonResponse.hits);
           setIsLoading(false);
-        }, 1000);
+        }, 2000);
 
         setErrorMessage(null);
       })
