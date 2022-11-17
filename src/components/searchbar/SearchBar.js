@@ -28,14 +28,14 @@ export default function SearchBar() {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        // setSearchResults(jsonResponse.hits);
-        // setIsLoading(false); // Hide loading screen
+        setSearchResults(jsonResponse.hits);
+        setIsLoading(false); // Hide loading screen
 
         // Optional code to simulate delay
-        setTimeout(() => {
+        /*        setTimeout(() => {
           setSearchResults(jsonResponse.hits);
           setIsLoading(false);
-        }, 1000);
+        }, 1000); */
 
         setErrorMessage(null);
       })

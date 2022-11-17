@@ -1,3 +1,4 @@
+import Moment from "react-moment";
 import uuid from "react-uuid";
 
 export default function DisplayResults({ searchResults }) {
@@ -7,16 +8,19 @@ export default function DisplayResults({ searchResults }) {
         {searchResults.length ? (
           searchResults.map((result) => (
             <li key={uuid()} className="result">
-              <p
+              <div
                 className="articletitle"
                 onClick={() => window.open(result.url, "_blank")}
               >
                 {result.title}
-              </p>
-              <p className="author">Created by: {result.author} </p>
-              <p className="date">
-                {new Date(result.created_at).toISOString().split("T")[0]}
-              </p>
+              </div>
+              <div className="articledetails">
+                <p className="author">Created by: {result.author} |&nbsp;</p>
+                <Moment fromNow className="date">
+                  {result.created_at}
+                </Moment>
+                <p className="points">&nbsp;| {result.points} points</p>
+              </div>
             </li>
           ))
         ) : (

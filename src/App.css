@@ -1,15 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-}
-
-.App {
-  text-align: center;
 }
 
 .header {
@@ -63,16 +59,13 @@ main {
   padding-bottom: 2vh;
 }
 
-.searchbar p {
-  font: inherit;
-}
-
 .searchbar input {
   padding: 1.5rem;
   border: 1px solid #666;
   border-radius: 3px;
   margin-left: 0.5rem;
   width: 30vw;
+  height: 7vh;
   font: inherit;
 }
 
@@ -81,33 +74,33 @@ main {
   margin-right: 0.5rem;
 }
 
-.searchResults {
-  list-style-type: none;
-  padding: 0;
-}
-
 .result {
-  padding: 0.5rem;
+  padding-left: 3rem;
   margin-bottom: 0.3rem;
   border-radius: 3px;
   background-color: rgba(0, 166, 255, 0.03);
-  font-size: 0.7em;
-  border: 1px solid black;
 }
 
 .articletitle {
   display: inline;
   cursor: pointer;
   font-weight: bold;
-  font-style: italic;
+  font-size: 1.05rem;
 }
 
 .articletitle:hover {
   color: red;
 }
 
+.articledetails {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  font-size: 0.9rem;
+}
+
 .errorMessage {
   margin-top: 20vh;
   color: red;
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
