@@ -59,7 +59,9 @@ export default function SearchBar() {
   return (
     <>
       <div className="searchbar">
-        <p>Search for</p>
+        <p>
+          <b>Search for</b>
+        </p>
         <input
           type="searchText"
           aria-label="What's on your mind?"

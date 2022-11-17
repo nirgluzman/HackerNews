@@ -14,7 +14,7 @@ export default function DisplayResults({ searchResults }) {
                 {result.title}
               </h3>
               <p className="author">
-                <strong>Created by:</strong>
+                Created by:
                 {result.author}
               </p>
               <p className="date">
