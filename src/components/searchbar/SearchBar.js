@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import DisplayResults from "../displayresults/DisplayResults";
-import LoadingSpinner from "../loadingspinner/LoadingSpinner";
+import { PacmanLoader } from "react-spinners";
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState("");
@@ -28,15 +28,14 @@ export default function SearchBar() {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        setSearchResults(jsonResponse.hits);
-        setIsLoading(false); // Hide loading screen
+        /* setSearchResults(jsonResponse.hits);
+        setIsLoading(false); // Hide loading screen */
 
         // Optional code to simulate delay
-        /*        setTimeout(() => {
+        setTimeout(() => {
           setSearchResults(jsonResponse.hits);
           setIsLoading(false);
-        }, 1000); */
-
+        }, 1000);
         setErrorMessage(null);
       })
       .catch((networkError) => {
@@ -48,13 +47,13 @@ export default function SearchBar() {
 
   useEffect(() => {
     fetchData(frontPage);
-  }, []);
+  }, [frontPage]);
 
   useEffect(() => {
     if (searchText !== "") {
       fetchData(searchQuery);
     }
-  }, [searchText]);
+  }, [searchText, searchQuery]);
 
   return (
     <>
@@ -70,11 +69,22 @@ export default function SearchBar() {
       </div>
       <div>
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="reactLoader">
+            <PacmanLoader color="orange" size={50} />
+          </div>
         ) : (
-          !errorMessage && <DisplayResults searchResults={searchResults} />
+          <>
+            {errorMessage === null && searchResults.length > 0 && (
+              <DisplayResults searchResults={searchResults} />
+            )}
+            {errorMessage === null && searchResults.length === 0 && (
+              <div className="errorMessage">No Search Results</div>
+            )}
+            {errorMessage !== null && (
+              <div className="errorMessage">{errorMessage}</div>
+            )}
+          </>
         )}
-        {errorMessage && <div className="errorMessage">{errorMessage}</div>}
       </div>
     </>
   );

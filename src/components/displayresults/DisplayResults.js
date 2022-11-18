@@ -1,31 +1,59 @@
 import Moment from "react-moment";
 import uuid from "react-uuid";
+import ReactPaginate from "react-paginate";
+import { useState, useEffect } from "react";
 
 export default function DisplayResults({ searchResults }) {
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(searchResults.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(searchResults.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, searchResults]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % searchResults.length;
+    setItemOffset(newOffset);
+  };
+
   return (
     <>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=">>"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<<"
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageLinkClassName="page-num"
+        previousLinkClassName="page-num"
+        nextLinkClassName="page-num"
+        activeLinkClassName="active"
+      />
       <ul className="searchResults">
-        {searchResults.length ? (
-          searchResults.map((result) => (
-            <li key={uuid()} className="result">
-              <div
-                className="articletitle"
-                onClick={() => window.open(result.url, "_blank")}
-              >
-                {result.title}
-              </div>
-              <div className="articledetails">
-                <p className="author">Created by: {result.author} |&nbsp;</p>
-                <Moment fromNow className="date">
-                  {result.created_at}
-                </Moment>
-                <p className="points">&nbsp;| {result.points} points</p>
-              </div>
-            </li>
-          ))
-        ) : (
-          <div className="errorMessage">No results !!</div>
-        )}
+        {currentItems.map((item) => (
+          <li key={uuid()} className="result">
+            <div
+              className="articletitle"
+              onClick={() => window.open(item.url, "_blank")}
+            >
+              {item.title}
+            </div>
+            <div className="articledetails">
+              <p className="author">Created by: {item.author} |&nbsp;</p>
+              <Moment fromNow className="date">
+                {item.created_at}
+              </Moment>
+              <p className="points">&nbsp;| {item.points} points</p>
+            </div>
+          </li>
+        ))}
       </ul>
     </>
   );

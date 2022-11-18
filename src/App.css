@@ -50,6 +50,13 @@ main {
   font-size: 16pt;
 }
 
+.reactLoader {
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .searchbar {
   display: flex;
   flex-wrap: nowrap;
@@ -63,7 +70,7 @@ main {
   padding: 1.5rem;
   border: 1px solid #666;
   border-radius: 3px;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   width: 30vw;
   height: 7vh;
   font: inherit;
@@ -74,8 +81,14 @@ main {
   margin-right: 0.5rem;
 }
 
+.searchResults {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
 .result {
-  padding-left: 3rem;
+  padding-left: 2rem;
   margin-bottom: 0.3rem;
   border-radius: 3px;
   background-color: rgba(0, 166, 255, 0.03);
@@ -101,6 +114,35 @@ main {
 
 .errorMessage {
   margin-top: 20vh;
-  color: red;
-  font-size: 1.5rem;
+  color: #666;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  gap: 5x;
+}
+
+.pagination .page-num {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.pagination .page-num:hover {
+  background-color: #666;
+  color: white;
+}
+
+.pagination .active {
+  background-color: #666;
+  color: white;
 }
