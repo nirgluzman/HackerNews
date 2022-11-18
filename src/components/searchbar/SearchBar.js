@@ -10,8 +10,8 @@ export default function SearchBar() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const baseURL = "http://hn.algolia.com/api/v1/search?";
-  const frontPage = `${baseURL}tags=front_page`;
-  const searchQuery = `${baseURL}query=${searchText}&tags=story`;
+  const frontPage = `${baseURL}tags=front_page&hitsPerPage=100`;
+  const searchQuery = `${baseURL}query=${searchText}&tags=story&hitsPerPage=100`;
 
   const handleTextChange = (event) => {
     setSearchText(event.target.value);
