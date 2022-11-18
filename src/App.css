@@ -82,16 +82,21 @@ main {
 }
 
 .searchResults {
-  list-style: none;
   display: flex;
   flex-direction: column;
+  align-items: left;
+  margin-left: 1rem;
+  font-size: 1.05rem;
 }
 
 .result {
-  padding-left: 2rem;
+  padding-left: 1rem;
+  margin-left: 2rem;
   margin-bottom: 0.3rem;
   border-radius: 3px;
   background-color: rgba(0, 166, 255, 0.03);
+  list-style-type: decimal;
+  list-style-position: outside;
 }
 
 .articletitle {

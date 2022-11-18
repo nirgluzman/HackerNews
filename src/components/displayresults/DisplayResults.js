@@ -7,7 +7,7 @@ export default function DisplayResults({ searchResults }) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -26,7 +26,7 @@ export default function DisplayResults({ searchResults }) {
         breakLabel="..."
         nextLabel=">>"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={0}
         pageCount={pageCount}
         previousLabel="<<"
         renderOnZeroPageCount={null}
@@ -36,7 +36,7 @@ export default function DisplayResults({ searchResults }) {
         nextLinkClassName="page-num"
         activeLinkClassName="active"
       />
-      <ul className="searchResults">
+      <ol className="searchResults" start={itemOffset + 1}>
         {currentItems.map((item) => (
           <li key={uuid()} className="result">
             <div
@@ -54,7 +54,7 @@ export default function DisplayResults({ searchResults }) {
             </div>
           </li>
         ))}
-      </ul>
+      </ol>
     </>
   );
 }
