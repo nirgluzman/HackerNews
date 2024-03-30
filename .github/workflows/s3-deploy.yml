@@ -3,9 +3,12 @@
 name: Deploy to S3
 
 on:
+  # Trigger from pushes to the main branch
   push:
-    branches:
-      - 'main'
+    branches: [main]
+
+  # Allow manual execution through UI
+  workflow_dispatch:
 
 jobs:
   build:
